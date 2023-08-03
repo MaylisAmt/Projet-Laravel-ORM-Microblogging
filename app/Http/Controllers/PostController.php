@@ -128,4 +128,9 @@ class PostController extends Controller
     return redirect(route('posts.index'));
 
     }
+
+    public function allMyPosts()
+    {
+        return view("profile.profile");
+    }
 }
