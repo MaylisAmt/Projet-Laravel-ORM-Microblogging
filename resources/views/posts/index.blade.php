@@ -1,10 +1,17 @@
 @extends("layouts.app")
 @section("title", "Tous les articles")
 @section("content")
+<x-app-layout>
+	<x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('POSTS') }}
+        </h2>
+    </x-slot>
+	
+	<x-slot name="posts_slot_title">
+		<h1>{{ __('Tous les articles')}}</h1>
+	</x-slot>
 
-<x-slot name="posts_slot_title">
-	<h1>Tous les articles</h1>
-</x-slot>
 	<p>
 		<!-- Lien pour créer un nouvel article : "posts.create" -->
 		<a href="{{ route('posts.create') }}" title="Créer un article" >Créer un nouveau post</a>
@@ -44,5 +51,5 @@
 			@endforeach
 		</tbody>
 	</table>
-	
+</x-app-layout>
 @endsection
