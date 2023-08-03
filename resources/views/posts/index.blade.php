@@ -2,8 +2,9 @@
 @section("title", "Tous les articles")
 @section("content")
 
+<x-slot name="posts_slot_title">
 	<h1>Tous les articles</h1>
-
+</x-slot>
 	<p>
 		<!-- Lien pour créer un nouvel article : "posts.create" -->
 		<a href="{{ route('posts.create') }}" title="Créer un article" >Créer un nouveau post</a>
