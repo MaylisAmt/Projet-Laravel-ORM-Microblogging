@@ -9,9 +9,9 @@
         </h2>
     </x-slot>
 	
-	{{-- <x-slot name="slot">
+	<x-slot name="test">
 		<h1>{{ __('Tous les articles')}}</h1>
-	</x-slot> --}}
+	</x-slot>
 	<div>
 		<h1>test</h1>
 	</div>
