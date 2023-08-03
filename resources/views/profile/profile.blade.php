@@ -8,5 +8,9 @@
     <div>
         This is the profile page x3
     </div>
-
+    <div><p>
+		<!-- Lien pour créer un nouvel article : "posts.create" -->
+		<a href="{{ route('profile.edit') }}" title="Modif profil" >Modif profil</a>
+	</p>
+</div>
 </x-app-layout>
