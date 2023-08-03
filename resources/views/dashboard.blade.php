@@ -18,4 +18,7 @@
             </div>
         </div>
     </div>
+    <div>
+        <p>Comment tu fais maintenant ?</p>
+    </div>
 </x-app-layout>

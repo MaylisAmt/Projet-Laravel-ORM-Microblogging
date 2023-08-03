@@ -1,17 +1,22 @@
-@extends("layouts.app")
-@section("title", "Tous les articles")
-@section("content")
+{{-- @extends("layouts.app") --}}
 <x-app-layout>
+{{-- @section("title", "Tous les articles") --}}
+{{-- @section("content") --}}
+
 	<x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('POSTS') }}
         </h2>
     </x-slot>
 	
-	<x-slot name="posts_slot_title">
+	{{-- <x-slot name="slot">
 		<h1>{{ __('Tous les articles')}}</h1>
-	</x-slot>
-
+	</x-slot> --}}
+	<div>
+		<h1>test</h1>
+	</div>
+	<div>
+	
 	<p>
 		<!-- Lien pour créer un nouvel article : "posts.create" -->
 		<a href="{{ route('posts.create') }}" title="Créer un article" >Créer un nouveau post</a>
@@ -51,5 +56,7 @@
 			@endforeach
 		</tbody>
 	</table>
+</div>
+	
+{{-- @endsection --}}
 </x-app-layout>
-@endsection
