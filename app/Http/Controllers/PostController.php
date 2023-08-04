@@ -128,12 +128,15 @@ class PostController extends Controller
     $post->delete();
 
     // Redirection route "posts.index"
-    return redirect(route('posts.index'));
+    return redirect(route("profile"));
 
     }
 
     public function allMyPosts()
     {
-        return view("profile.profile");
+        $user_id = Auth::user()->id;
+        $posts = Post::where('user_id', $user_id)->get();
+
+        return view("profile.profile", compact("posts"));
     }
 }
