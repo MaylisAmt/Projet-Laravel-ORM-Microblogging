@@ -9,50 +9,56 @@
         </h2>
     </x-slot>
 	
-	<x-slot name="test">
-		<h1>{{ __('Tous les articles')}}</h1>
-	</x-slot>
 	<div>
-		<h1>test</h1>
+		<p>Mot du jour :</p>
+		
 	</div>
+
 	<div>
-	
 	<p>
 		<!-- Lien pour créer un nouvel article : "posts.create" -->
 		<a href="{{ route('posts.create') }}" title="Créer un article" >Créer un nouveau post</a>
 	</p>
 
 	<!-- Le tableau pour lister les articles/posts -->
-	<table border="1" >
+	{{-- <table border="1" >
 		<thead>
 			<tr>
 				<th>Titre</th>
 				<th colspan="2" >Opérations</th>
 			</tr>
-		</thead>
+		</thead> --}}
 		<tbody>
 			<!-- On parcourt la collection de Post -->
 			@foreach ($posts as $post)
-			<tr>
+		
+			<div>
+				<h1>{{ $post->title }}</h1>
+
+				<img src="{{ asset('storage/'.$post->picture) }}" alt="Image de couverture" style="max-width: 300px;">
+
+				<div>{{ $post->content }}</div>
+			</div>
+			{{-- <tr>
 				<td>
 					<!-- Lien pour afficher un Post : "posts.show" -->
 					<a href="{{ route('posts.show', $post) }}" title="Lire l'article" >{{ $post->title }}</a>
 				</td>
-				<td>
+				{{-- <td> --}}
 					<!-- Lien pour modifier un Post : "posts.edit" -->
-					<a href="{{ route('posts.edit', $post) }}" title="Modifier l'article" >Modifier</a>
-				</td>
-				<td>
+					{{-- <a href="{{ route('posts.edit', $post) }}" title="Modifier l'article" >Modifier</a>
+				</td> --}}
+				{{-- <td> --}}
 					<!-- Formulaire pour supprimer un Post : "posts.destroy" -->
-					<form method="POST" action="{{ route('posts.destroy', $post) }}" >
+					{{-- <form method="POST" action="{{ route('posts.destroy', $post) }}" > --}}
 						<!-- CSRF token -->
-						@csrf
+						{{-- @csrf --}}
 						<!-- <input type="hidden" name="_method" value="DELETE"> -->
-						@method("DELETE")
-						<input type="submit" value="x Supprimer" >
-					</form>
-				</td>
-			</tr>
+						{{-- @method("DELETE")
+						<input type="submit" value="x Supprimer" > --}}
+					{{-- </form>
+				</td> --}}
+			{{-- </tr> --}}
 			@endforeach
 		</tbody>
 	</table>
