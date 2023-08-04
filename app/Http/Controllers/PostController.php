@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+// use App\Http\Controllers\Auth;
+use Auth;
 class PostController extends Controller
 {
     /**
@@ -42,12 +43,14 @@ class PostController extends Controller
 
     // 2. On upload l'image dans "/storage/app/public/posts"
     $chemin_image = $request->picture->store("posts");
-
+    
+    $user_id= Auth::user()->id;
     // 3. On enregistre les informations du Post
     Post::create([
         "title" => $request->title,
         "picture" => $chemin_image,
         "content" => $request->content,
+        "user_id"=> $user_id,
     ]);
 
     // 4. On retourne vers tous les posts : route("posts.index")
