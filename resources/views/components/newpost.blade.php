@@ -18,11 +18,11 @@
             <textarea class="block mt-1 w-full" id="detail" name="detail" class="rounded-sm">{{ old('detail') }}</textarea>
             <x-input-error :messages="$errors->get('detail')" class="mt-2" />
         </div>
-        <!-- Image -->
-        <div class="flex items-center justify mt-4">
+         <!-- Image -->
+         <div class="flex items-center justify mt-4">
             <x-input-label for="image" />
-            <input type="file" name="image" accept="image/jpg, image/jpeg, image/png, image/gif" class="rounded-sm"/>
-        </div>
+            <input type="file" name="image" id="image" class="rounded-sm"/>
+        </div> 
 
       
         <div class="flex items-center justify-end mt-4">
