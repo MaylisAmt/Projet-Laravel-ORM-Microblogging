@@ -32,14 +32,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile/edit', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile/edit', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/newpost', [NewPostController::class, 'store'])->name('newpost.store');
+
 });
 
 Route::get('/api', [APIController::class, 'fetchAPI'])->name('word');
 
-
-Route::middleware(['auth'])->group(function () {
-Route::post('/newpost', [NewPostController::class, 'store'])->name('newpost.store');
-});
 
 Route::resource('/posts', PostController::class);
 require __DIR__.'/auth.php';
