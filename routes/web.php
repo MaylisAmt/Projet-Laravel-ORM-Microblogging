@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\APIController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,10 +25,15 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    // A l'avenir on veut que la premiere route n'affiche que les posts du logged user
+    Route::get('/profile', [PostController::class, 'allMyPosts'])->name('profile');
+    Route::get('/profile/mypost', [PostController::class, 'show'])->name('profile.mypost');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile/edit', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile/edit', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/api', [APIController::class, 'fetchAPI'])->name('word');
 
 Route::resource('/posts', PostController::class);
 
