@@ -18,5 +18,10 @@
                 {{ __('Envoyer') }}
             </x-primary-button>
         </div>
+        @if(session()->has('success'))
+            <div class="alert alert-success">
+             {{ session('success') }}
+            </div>
+        @endif
     </form>
 </div>
