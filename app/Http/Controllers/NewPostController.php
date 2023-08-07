@@ -27,7 +27,7 @@ class NewPostController extends Controller
          // 2. On upload l'image dans "/storage/app/public/posts"
          //$chemin_image = $request->file('picture')->store('public');
          try {
-            $chemin_image = $request->image->store(config('images.path'), 'public');
+            $chemin_image = $request->image->store('posts', 'public');
             //$chemin_image = $request->file('picture')->store('public');
         } catch (\Exception $e) {
             // Handle the error
@@ -40,12 +40,12 @@ class NewPostController extends Controller
     // // Enregistrement dans base de donnée
       Post::create([
           "title" => $data['title'],
-    //      //"picture" => $chemin_image,
+          "picture" => $chemin_image,
          "content" => $data['detail'],
          "user_id" => $user_id,
      ]);
     
-     return "Post envoyé";
+     return redirect()->back()->with('success', 'Post ajouté avec succès.');
     }       
 
 }

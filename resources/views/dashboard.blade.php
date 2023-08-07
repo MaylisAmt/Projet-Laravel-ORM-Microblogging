@@ -19,6 +19,7 @@
                     {{-- ajout du formulaire de creation de post --}}
                     <h1>Creer un post</h1>
                     <x-newpost />
+                    {{-- <x-newcom /> --}}
                 </div>
             </div>
         </div>

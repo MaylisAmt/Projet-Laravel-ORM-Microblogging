@@ -30,14 +30,18 @@
 		</thead> --}}
 		<tbody>
 			<!-- On parcourt la collection de Post -->
+			<div>
 			@foreach ($posts as $post)
 		
-			<div>
-				<h1>{{ $post->title }}</h1>
+				<div class="border border-black">
+					<h1>{{ $post->title }}</h1>
 
-				<img src="{{ asset('storage/'.$post->picture) }}" alt="Image de couverture" style="max-width: 300px;">
+					<img src="{{ asset('storage/'.$post->picture) }}" alt="Image de couverture" style="max-width: 300px;">
 
-				<div>{{ $post->content }}</div>
+					<div>{{ $post->content }}</div>
+					<x-newcom :postId="$post->id"/>
+				</div>		
+			@endforeach
 			</div>
 			{{-- <tr>
 				<td>
@@ -59,7 +63,7 @@
 					{{-- </form>
 				</td> --}}
 			{{-- </tr> --}}
-			@endforeach
+			
 		</tbody>
 	</table>
 </div>

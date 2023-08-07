@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\APIController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewPostController;
+use App\Http\Controllers\CommentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +40,9 @@ Route::get('/api', [APIController::class, 'fetchAPI'])->name('word');
 
 Route::middleware(['auth'])->group(function () {
 Route::post('/newpost', [NewPostController::class, 'store'])->name('newpost.store');
+Route::post('/newcomment', [CommentsController::class, 'store'])->name('comment.store');
 });
+
 
 Route::resource('/posts', PostController::class);
 require __DIR__.'/auth.php';
