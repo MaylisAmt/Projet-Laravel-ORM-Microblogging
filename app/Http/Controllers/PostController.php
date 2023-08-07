@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-// use App\Http\Controllers\Auth;
-use Auth;
+
+use Illuminate\Support\Facades\Auth;
+
+
 class PostController extends Controller
 {
     /**
@@ -37,21 +39,27 @@ class PostController extends Controller
         // 1. La validation
     $this->validate($request, [
         'title' => 'bail|required|string|max:255',
-        "picture" => 'bail|required|image|max:1024',
+        "picture" => 'bail|required|image|mimes:jpeg,jpg,png,gif|max:5000',
         "content" => 'bail|required',
     ]);
 
     // 2. On upload l'image dans "/storage/app/public/posts"
-    $chemin_image = $request->picture->store("posts");
-    
-    $user_id= Auth::user()->id;
-    // 3. On enregistre les informations du Post
+
+    $chemin_image = $request->file('picture')->store('public');
+
+    // récupération de l'userId
+        $user_id = Auth::id();
+    // Enregistrement dans base de donnée
+
     Post::create([
         "title" => $request->title,
         "picture" => $chemin_image,
         "content" => $request->content,
-        "user_id"=> $user_id,
+        "user_id" => $user_id,
+
     ]);
+
+    
 
     // 4. On retourne vers tous les posts : route("posts.index")
     return redirect(route("posts.index"));

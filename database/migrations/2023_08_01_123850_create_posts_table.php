@@ -16,7 +16,11 @@ return new class extends Migration
             $table->string('title');
             $table->string('picture');
             $table->text('content');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
+
+            //clé étrangère table user pour lier le post à l'user
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
