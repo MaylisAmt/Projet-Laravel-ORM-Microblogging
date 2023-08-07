@@ -21,12 +21,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     // A l'avenir on veut que la premiere route n'affiche que les posts du logged user
+    Route::get('/dashboard', [PostController::class, 'index'])->name('feed');
     Route::get('/profile', [PostController::class, 'allMyPosts'])->name('profile');
     Route::get('/profile/mypost', [PostController::class, 'show'])->name('profile.mypost');
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
