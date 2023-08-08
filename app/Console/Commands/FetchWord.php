@@ -4,6 +4,8 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\DB;
+
 
 class FetchWord extends Command
 {
@@ -31,6 +33,8 @@ class FetchWord extends Command
         $wordOfTheDay = Http::get('https://random-word-api.vercel.app/api?words=1');
         $word = $wordOfTheDay[0];
 
-        \Log::info("Word fetched: ", $word);
+        \Log::info("Word fetched: ", [$word]);
+
+        // DB::insert('insert into wotd (null, word, null) values(?, ?, ?)', [$word]);
     }
 }
