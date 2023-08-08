@@ -19,7 +19,7 @@ use App\Http\Controllers\CommentsController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
 });
 
 Route::get('/dashboard', function () {
@@ -41,6 +41,7 @@ Route::get('/api', [APIController::class, 'fetchAPI'])->name('word');
 Route::middleware(['auth'])->group(function () {
 Route::post('/newpost', [NewPostController::class, 'store'])->name('newpost.store');
 Route::post('/newcomment', [CommentsController::class, 'store'])->name('comment.store');
+Route::get('/listcomment', [CommentsController::class, 'show'])->name('comment.show');
 });
 
 

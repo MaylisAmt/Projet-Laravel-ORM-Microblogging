@@ -34,11 +34,13 @@
 			@foreach ($posts as $post)
 		
 				<div class="border border-black">
-					<h1>{{ $post->title }}</h1>
+					<h1 class="font-bold text-xl capitalize">{{ $post->title }}</h1>
 
 					<img src="{{ asset('storage/'.$post->picture) }}" alt="Image de couverture" style="max-width: 300px;">
 
 					<div>{{ $post->content }}</div>
+					<x-listcomment :comments="$post->comments" />
+
 					<x-newcom :postId="$post->id"/>
 				</div>		
 			@endforeach
