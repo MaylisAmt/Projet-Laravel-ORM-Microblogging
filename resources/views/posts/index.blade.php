@@ -5,14 +5,10 @@
 
 	<x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('POSTS') }}
+            {{ __('WOTD') }}
         </h2>
-    </x-slot>
-	
-	<div>
 		<p>Mot du jour :</p>
-		
-	</div>
+    </x-slot>
 
 	<div>
 	<p>

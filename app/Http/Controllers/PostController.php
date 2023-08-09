@@ -142,10 +142,11 @@ class PostController extends Controller
 
     }
 
+    //On affiche tous les posts du user logged in du plus récent au plus ancien.
     public function allMyPosts()
     {
         $user_id = Auth::user()->id;
-        $posts = Post::where('user_id', $user_id)->get();
+        $posts = Post::where('user_id', $user_id)->latest()->get();
 
         return view("profile.profile", compact("posts"));
     }
