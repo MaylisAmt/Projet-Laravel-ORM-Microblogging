@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Wotd;
+use Dotenv\Parser\Value;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
@@ -19,6 +20,19 @@ class APIController extends Controller
         ]);
 
         return view("api", compact("word"));
+    }
+
+    public function compareDate () {
+        $currentTime = time();
+        $currentDate = date("Y-m-d", $currentTime);
+
+        $arrayLastWotd = DB::table('wotds')->orderBy('id', 'desc')->limit(1)->get('created_at');
+        $splitDate = explode(" ", $arrayLastWotd[0]->created_at);
+        $dateLastWotd = $splitDate[0];
+
+
+        return view("date", compact("currentDate", "dateLastWotd"));
+
     }
 
    // raisonnement : 

@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/api', [APIController::class, 'fetchAPI'])->name('word');
+Route::get('/date', [APIController::class, 'compareDate'])->name('currentDate');
 Route::post('/api/post', [APIController::class, 'fetchAPI'])->name('create.word');
 
 
