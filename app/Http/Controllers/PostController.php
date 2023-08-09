@@ -129,14 +129,16 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        // On supprime l'image existant
+        //On supprime l'image existant
     Storage::delete($post->picture);
 
-    // On les informations du $post de la table "posts"
+    //On les informations du $post de la table "posts"
     $post->delete();
 
-    // Redirection route "posts.index"
+    //Redirection route "posts.index"
+    
     return redirect(route("profile"));
+    
 
     }
 

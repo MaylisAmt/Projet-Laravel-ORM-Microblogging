@@ -15,6 +15,9 @@
                     <x-nav-link :href="route('feed')" :active="request()->routeIs('feed')">
                         {{ __('Feed') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('posts.index')">
+                        <p>Les photos! 📸</p>
+                    </x-nav-link>
                 </div>
             </div>
 

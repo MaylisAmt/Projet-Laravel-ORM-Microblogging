@@ -28,7 +28,7 @@ class NewPostController extends Controller
          //$chemin_image = $request->file('picture')->store('public');
          try {
             $chemin_image = $request->image->store('posts', 'public');
-            // $chemin_image = $request->file('picture')->store('public');
+
         } catch (\Exception $e) {
             // Handle the error
             return back()->withInput()->withErrors(['picture' => 'Failed to upload the picture']);
@@ -39,13 +39,15 @@ class NewPostController extends Controller
            
     // // Enregistrement dans base de donnée
       Post::create([
-        "title" => $data['title'],
-        "picture" => $chemin_image,
-        "content" => $data['detail'],
-        "user_id" => $user_id,
+
+          "title" => $data['title'],
+          "picture" => $chemin_image,
+         "content" => $data['detail'],
+         "user_id" => $user_id,
      ]);
     
-     return view("dashboard");
+     return redirect()->back()->with('success', 'Post ajouté avec succès.');
+
     }       
 
 }

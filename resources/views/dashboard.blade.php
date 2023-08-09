@@ -19,11 +19,10 @@
                     {{-- ajout du formulaire de creation de post --}}
                     <h1>Creer un post</h1>
                     <x-newpost />
+                    {{-- <x-newcom /> --}}
                 </div>
             </div>
         </div>
     </div>
-    <div>
-        <p>Comment tu fais maintenant ?</p>
-    </div>
+    
 </x-app-layout>
