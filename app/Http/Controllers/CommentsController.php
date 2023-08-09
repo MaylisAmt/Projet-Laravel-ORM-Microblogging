@@ -13,6 +13,18 @@ class CommentsController extends Controller
       return view('/posts', ['comments' => $comments]);
     }
 
+    public function delete(Comment $comment) {
+        $idAuthor = $comment->user_id;
+        if(Auth::id() === $idAuthor){
+            //supprime le commentaire
+            $comment ->delete();
+            return redirect()->back()->with('succes', 'Commentaire supprimé 🫥');
+        }
+        else{
+            return redirect()->back()->with('error', "Tu n'est pas autorisé à supprimer ce commentaire ⛔️");
+        }
+    }
+
     public function store(Request $request){
         // récupération des donnes du formulaire
 

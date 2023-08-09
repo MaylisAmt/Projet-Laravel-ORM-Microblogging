@@ -19,13 +19,16 @@ use App\Http\Controllers\CommentsController;
 */
 
 Route::get('/', function () {
-    return view('dashboard');
+    return redirect('login');
 });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/login', function() {
+    return view('login');
+});
 Route::middleware('auth')->group(function () {
     // A l'avenir on veut que la premiere route n'affiche que les posts du logged user
     Route::get('/profile', [PostController::class, 'allMyPosts'])->name('profile');
@@ -33,15 +36,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile/edit', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile/edit', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
 });
 
 Route::get('/api', [APIController::class, 'fetchAPI'])->name('word');
 
 
 Route::middleware(['auth'])->group(function () {
-Route::post('/newpost', [NewPostController::class, 'store'])->name('newpost.store');
-Route::post('/newcomment', [CommentsController::class, 'store'])->name('comment.store');
-Route::get('/listcomment', [CommentsController::class, 'show'])->name('comment.show');
+    Route::post('/newpost', [NewPostController::class, 'store'])->name('newpost.store');
+    Route::post('/newcomment', [CommentsController::class, 'store'])->name('comment.store');
+    Route::get('/listcomment', [CommentsController::class, 'show'])->name('comment.show');
+    Route::delete('/listcomment/{comment}', [CommentsController::class, 'delete'])->name('comment.delete');
 });
 
 
