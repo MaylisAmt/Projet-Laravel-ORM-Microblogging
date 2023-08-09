@@ -52,6 +52,11 @@ class PostController extends Controller
 
     // récupération de l'userId
         $user_id = Auth::id();
+
+    // récupération de l'id du wotd
+        $arrayLastWotd = DB::table('wotds')->orderBy('id', 'desc')->limit(1)->get('id');
+        $linked_wotd_id = $arrayLastWotd[0]->id;
+
     // Enregistrement dans base de donnée
 
     Post::create([
@@ -59,7 +64,7 @@ class PostController extends Controller
         "picture" => $chemin_image,
         "content" => $request->content,
         "user_id" => $user_id,
-
+        "linked_wotd_id" => $linked_wotd_id,
     ]);
 
     
