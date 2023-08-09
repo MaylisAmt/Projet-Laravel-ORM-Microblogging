@@ -7,7 +7,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('WOTD') }}
         </h2>
-		<p>Mot du jour :</p>
+		<p>Mot du jour : {{$wotd}}</p>
     </x-slot>
 
 	<div>

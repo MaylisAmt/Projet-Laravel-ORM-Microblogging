@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -18,9 +18,12 @@ class PostController extends Controller
     {
         //On récupère tous les Post
     $posts = Post::latest()->get();
+    $arrayLastWotd = DB::table('wotds')->orderBy('id', 'desc')->limit(1)->get('word');
+    $splitWord = explode(" ", $arrayLastWotd[0]->word);
+    $wotd = $splitWord[0];
 
     // On transmet les Post à la vue
-    return view("posts.index", compact("posts"));
+    return view("posts.index", compact("posts", "wotd"));
     }
 
     /**
