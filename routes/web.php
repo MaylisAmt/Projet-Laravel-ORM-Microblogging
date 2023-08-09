@@ -22,13 +22,13 @@ Route::get('/', function () {
     return redirect('login');
 });
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/login', function() {
     return view('login');
 });
+Route::get('/api', [APIController::class, 'fetchAPI'])->name('word');
+
+
 Route::middleware('auth')->group(function () {
     // A l'avenir on veut que la premiere route n'affiche que les posts du logged user
     Route::get('/dashboard', [PostController::class, 'index'])->name('feed');
@@ -37,11 +37,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile/edit', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile/edit', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('like-post/{id}',[PostController::class, 'likePost'])->name('like.post');
+    Route::post('unlike-post/{id}',[PostController::class, 'unlikePost'])->name('unlike.post');
 });
-
-Route::get('/api', [APIController::class, 'fetchAPI'])->name('word');
-
-
 
 Route::middleware(['auth'])->group(function () {
     Route::post('/newpost', [NewPostController::class, 'store'])->name('newpost.store');

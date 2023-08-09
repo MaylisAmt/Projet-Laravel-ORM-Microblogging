@@ -15,7 +15,8 @@
 
 	<div>
 	<!-- Le formulaire est géré par la route "posts.store" -->
-	<form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data" >
+	<x-newpost />
+	{{-- <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data" >
 
 		<!-- Le token CSRF -->
 		@csrf
@@ -50,7 +51,7 @@
 
 		<input type="submit" name="valider" value="Valider" >
 
-	</form>
+	</form> --}}
 	</div>
 </x-app-layout>
 
