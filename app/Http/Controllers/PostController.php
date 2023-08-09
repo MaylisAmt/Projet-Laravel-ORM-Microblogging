@@ -156,6 +156,11 @@ class PostController extends Controller
         $user_id = Auth::user()->id;
         $posts = Post::where('user_id', $user_id)->latest()->get();
 
-        return view("profile.profile", compact("posts"));
+        $arrayLastWotd = DB::table('wotds')->orderBy('id', 'desc')->limit(1)->get('id');
+        $linked_wotd_id = $arrayLastWotd[0]->id;
+        $getwotd = DB::table('wotds')->where('id', $linked_wotd_id)->get('word');
+        $wotd = $getwotd[0]->word;
+        
+        return view("profile.profile", compact("posts", "wotd"));
     }
 }

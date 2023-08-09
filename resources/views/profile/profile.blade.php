@@ -25,7 +25,7 @@
                     </div>
                         {{-- <div>{{ $post->content }}</div> --}}
                     <div>
-                        <p>Cliquez sur l'image pour Modifier ou supprimer l'image</p>
+                        <p>{{$wotd}}</p>
                     </div>
                 </div>
                 @endforeach
