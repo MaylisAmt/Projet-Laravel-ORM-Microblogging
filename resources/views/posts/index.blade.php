@@ -30,10 +30,10 @@
 		</thead> --}}
 		<tbody>
 			<!-- On parcourt la collection de Post -->
-			<div>
+			<div class="m-12 ">
 			@foreach ($posts as $post)
 		
-				<div class="border border-black">
+				<div class="border border-black-100 rounded-sm pt-6 mt-4">
 					<h1 class="font-bold text-xl capitalize">{{ $post->title }}</h1>
 
 					<img src="{{ asset('storage/'.$post->picture) }}" alt="Image de couverture" style="max-width: 300px;">

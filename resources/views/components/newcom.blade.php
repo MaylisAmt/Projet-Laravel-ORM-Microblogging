@@ -10,7 +10,7 @@
         <input type="hidden" name="post_id" value="{{$postId}}">
         <div class="mt-4">
             <x-input-label for="comment" :value="__('comment')" />
-            <textarea class="block mt-1 w-full" id="comment" name="comment" class="rounded-sm">{{ old('comment') }}</textarea>
+            <textarea class="block mt-1 w-[400px]" id="comment" name="comment" class="rounded-sm">{{ old('comment') }}</textarea>
             <x-input-error :messages="$errors->get('comment')" class="mt-2" />
         </div>
         <div class="flex items-center justify-end mt-4">

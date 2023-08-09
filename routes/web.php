@@ -47,6 +47,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/newcomment', [CommentsController::class, 'store'])->name('comment.store');
     Route::get('/listcomment', [CommentsController::class, 'show'])->name('comment.show');
     Route::delete('/listcomment/{comment}', [CommentsController::class, 'delete'])->name('comment.delete');
+    
 });
 
 
