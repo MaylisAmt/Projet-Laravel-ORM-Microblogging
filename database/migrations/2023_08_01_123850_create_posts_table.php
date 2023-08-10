@@ -17,11 +17,17 @@ return new class extends Migration
             $table->string('picture');
             $table->text('content');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('linked_wotd_id');
+
             $table->timestamps();
 
             //clé étrangère table user pour lier le post à l'user
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('linked_wotd_id')->references('id')->on('wotds')->onDelete('cascade');
+
+
         });
+
     }
 
     /**
