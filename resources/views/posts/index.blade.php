@@ -1,7 +1,6 @@
-{{-- @extends("layouts.app") --}}
+
 <x-app-layout>
-{{-- @section("title", "Tous les articles") --}}
-{{-- @section("content") --}}
+
 
 	<x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -16,14 +15,7 @@
 		<a href="{{ route('posts.create') }}" title="Créer un article" >Créer un nouveau post</a>
 	</p>
 
-	<!-- Le tableau pour lister les articles/posts -->
-	{{-- <table border="1" >
-		<thead>
-			<tr>
-				<th>Titre</th>
-				<th colspan="2" >Opérations</th>
-			</tr>
-		</thead> --}}
+	
 		<tbody>
 			<!-- On parcourt la collection de Post -->
 			<div class="m-12 ">
@@ -35,32 +27,35 @@
 					<img src="{{ asset('storage/'.$post->picture) }}" alt="Image de couverture" style="max-width: 300px;">
 
 					<div>{{ $post->content }}</div>
-					<x-listcomment :comments="$post->comments" />
 
+					<div>
+						@if (!$post->liked())
+						<form action="{{ route('like.post', $post->id) }}" method="POST">
+							@csrf
+							<button class="block bg-green-600 rounded:ml px-2 py-4">I love it, picasso</button>
+						</form>
+						
+						@else
+						<form action="{{ route('unlike.post', $post->id) }}" method="post">
+							@csrf
+							<button class="{{ $post->liked() ? 'block' : 'hidden'  }} px-4 py-2 text-white bg-red-600">Gosh please no !</button>
+						</form>
+
+						<p class="text-xl">Nombre de votes : {{ $post->likeCount }}</p>
+						<p class="text-green-500">Vous avez déjà voté pour ce post.</p>
+								<p class="text-xl">Nombre de votes : {{ $post->likeCount }}</p>
+						@endif
+						
+						
+					</div>
+					<x-listcomment :comments="$post->comments" />
+						
 					<x-newcom :postId="$post->id"/>
+						
 				</div>		
 			@endforeach
 			</div>
-			{{-- <tr>
-				<td>
-					<!-- Lien pour afficher un Post : "posts.show" -->
-					<a href="{{ route('posts.show', $post) }}" title="Lire l'article" >{{ $post->title }}</a>
-				</td>
-				{{-- <td> --}}
-					<!-- Lien pour modifier un Post : "posts.edit" -->
-					{{-- <a href="{{ route('posts.edit', $post) }}" title="Modifier l'article" >Modifier</a>
-				</td> --}}
-				{{-- <td> --}}
-					<!-- Formulaire pour supprimer un Post : "posts.destroy" -->
-					{{-- <form method="POST" action="{{ route('posts.destroy', $post) }}" > --}}
-						<!-- CSRF token -->
-						{{-- @csrf --}}
-						<!-- <input type="hidden" name="_method" value="DELETE"> -->
-						{{-- @method("DELETE")
-						<input type="submit" value="x Supprimer" > --}}
-					{{-- </form>
-				</td> --}}
-			{{-- </tr> --}}
+			
 			
 		</tbody>
 	</table>
