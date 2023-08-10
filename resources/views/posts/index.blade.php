@@ -31,6 +31,7 @@
 		
 				<div class="border border-black-100 rounded-sm pt-6 mt-4">
 					<h1 class="font-bold text-xl capitalize">{{ $post->title }}</h1>
+					
 
 					<img src="{{ asset('storage/'.$post->picture) }}" alt="Image de couverture" style="max-width: 300px;">
 
@@ -41,26 +42,6 @@
 				</div>		
 			@endforeach
 			</div>
-			{{-- <tr>
-				<td>
-					<!-- Lien pour afficher un Post : "posts.show" -->
-					<a href="{{ route('posts.show', $post) }}" title="Lire l'article" >{{ $post->title }}</a>
-				</td>
-				{{-- <td> --}}
-					<!-- Lien pour modifier un Post : "posts.edit" -->
-					{{-- <a href="{{ route('posts.edit', $post) }}" title="Modifier l'article" >Modifier</a>
-				</td> --}}
-				{{-- <td> --}}
-					<!-- Formulaire pour supprimer un Post : "posts.destroy" -->
-					{{-- <form method="POST" action="{{ route('posts.destroy', $post) }}" > --}}
-						<!-- CSRF token -->
-						{{-- @csrf --}}
-						<!-- <input type="hidden" name="_method" value="DELETE"> -->
-						{{-- @method("DELETE")
-						<input type="submit" value="x Supprimer" > --}}
-					{{-- </form>
-				</td> --}}
-			{{-- </tr> --}}
 			
 		</tbody>
 	</table>
