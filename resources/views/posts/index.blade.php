@@ -32,7 +32,7 @@
 						@if (!$post->liked())
 						<form action="{{ route('like.post', $post->id) }}" method="POST">
 							@csrf
-							<button class="border border-white rounded:ml px-2 py-4">I love it, picasso</button>
+							<button class="block bg-green-600 rounded:ml px-2 py-4">I love it, picasso</button>
 						</form>
 						
 						@else
