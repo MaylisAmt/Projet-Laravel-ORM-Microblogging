@@ -144,7 +144,7 @@ class PostController extends Controller
     
 
     }
-
+    
     //On affiche tous les posts du user logged in du plus récent au plus ancien.
     public function allMyPosts()
     {
@@ -153,4 +153,23 @@ class PostController extends Controller
 
         return view("profile.profile", compact("posts"));
     }
+
+    public function likePost($id)
+    {
+        $post = Post::find($id);
+        $post -> like();
+        $post -> save();
+
+        return redirect()->back()->with("succes", "Yay +1 !");
+    }
+    public function unlikePost($id)
+    {
+        $post = Post::find($id);
+        $post->unlike();
+        $post->save();
+        
+        return redirect()->back()->with('succces', 'Pas si ouf du coup 🥶');
+    }
+
+
 }
