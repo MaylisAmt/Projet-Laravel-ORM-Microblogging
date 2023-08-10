@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Wotd;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -14,6 +16,31 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+     public function compareDate () {
+        $currentTime = time();
+        $currentDate = date("Y-m-d", $currentTime);
+
+        $arrayLastWotd = DB::table('wotds')->orderBy('id', 'desc')->limit(1)->get('created_at');
+        $splitDate = explode(" ", $arrayLastWotd[0]->created_at);
+        $dateLastWotd = $splitDate[0];
+
+        if ($currentDate != $dateLastWotd) {
+            $wordOfTheDay = Http::get('https://random-word-api.vercel.app/api?words=1');
+            $word = $wordOfTheDay[0];
+            
+            $wotd = Wotd::create([
+                'word'=>$word,
+            ]);
+    
+            return view("api", compact("word"));
+        }
+
+        return view("date", compact("currentDate", "dateLastWotd"));
+
+    }
+    
+    
     public function index()
     {
         //On récupère tous les Post
@@ -21,6 +48,8 @@ class PostController extends Controller
     $arrayLastWotd = DB::table('wotds')->orderBy('id', 'desc')->limit(1)->get('word');
     $splitWord = explode(" ", $arrayLastWotd[0]->word);
     $wotd = $splitWord[0];
+
+    $this->compareDate();
 
     // On transmet les Post à la vue
     return view("posts.index", compact("posts", "wotd"));
