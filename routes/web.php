@@ -41,6 +41,10 @@ Route::middleware('auth')->group(function () {
     Route::post('unlike-post/{id}',[PostController::class, 'unlikePost'])->name('unlike.post');
 });
 
+Route::get('/api', [APIController::class, 'compareDate'])->name('word');
+Route::get('/date', [APIController::class, 'compareDate'])->name('currentDate');
+Route::post('/api/post', [APIController::class, 'fetchAPI'])->name('create.word');
+
 Route::middleware(['auth'])->group(function () {
     Route::post('/newpost', [NewPostController::class, 'store'])->name('newpost.store');
     Route::post('/newcomment', [CommentsController::class, 'store'])->name('comment.store');

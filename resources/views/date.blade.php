@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-<div>{{$word}}</div>
-{{-- <div>{{$currentDate}}</div> --}}
+<div>{{$currentDate}}</div>
+<div>{{$dateLastWotd}}</div>
 
 </x-app-layout>
